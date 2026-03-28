@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPL 2026 Fantasy Auction — Friend League</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #FFD700;
+    --gold2: #FFA500;
+    --neon: #00F5FF;
+    --bg: #05080F;
+    --bg2: #0A0F1E;
+    --bg3: #0F1628;
+    --card: #111827;
+    --border: rgba(255,255,255,0.08);
+    --text: #E8EAF0;
+    --muted: #8892A4;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 60px 20px 50px;
+    background: linear-gradient(180deg, #0a1435 0%, var(--bg) 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content:'';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,245,255,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-trophy {
+    font-size: 64px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 0 24px rgba(255,215,0,0.5));
+    animation: trophy-glow 2.5s ease-in-out infinite alternate;
+  }
+  @keyframes trophy-glow {
+    from { filter: drop-shadow(0 0 12px rgba(255,215,0,0.4)); }
+    to   { filter: drop-shadow(0 0 36px rgba(255,215,0,0.9)); }
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 8vw, 80px);
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #FFD700 0%, #FF8C00 40%, #FFD700 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(11px, 2.5vw, 16px);
+    letter-spacing: 6px;
+    color: var(--neon);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    opacity: 0.85;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--gold);
+  }
+  .hero-stat-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 16px 30px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 40px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(255,215,0,0.06);
+  }
+
+  /* ─── SECTION TITLES ─── */
+  .section-title {
+    text-align: center;
+    padding: 40px 16px 30px;
+  }
+  .section-title h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    letter-spacing: 3px;
+    color: var(--text);
+  }
+  .section-title h2 span {
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .title-line {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--neon));
+    margin: 10px auto 0;
+    border-radius: 2px;
+  }
+
+  /* ─── LEADERBOARD ─── */
+  #leaderboard { padding: 0 16px 60px; }
+
+  .lb-table-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg2);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 0 60px rgba(0,245,255,0.04);
+  }
+  .lb-header {
+    display: grid;
+    grid-template-columns: 52px 1fr 120px 90px 90px;
+    padding: 14px 24px;
+    background: rgba(255,215,0,0.04);
+    border-bottom: 1px solid var(--border);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .lb-row {
+    display: grid;
+    grid-template-columns: 52px 1fr 120px 90px 90px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.18s;
+    cursor: pointer;
+  }
+  .lb-row:hover { background: rgba(255,255,255,0.03); }
+  .lb-row:last-child { border-bottom: none; }
+  .lb-rank {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--muted);
+  }
+  .lb-rank.r1 { color: #FFD700; }
+  .lb-rank.r2 { color: #C0C0C0; }
+  .lb-rank.r3 { color: #CD7F32; }
+
+  .medal { font-size: 22px; }
+
+  .lb-team {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .lb-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: rgba(255,255,255,0.04);
+    padding: 2px;
+    border: 1.5px solid var(--border);
+    flex-shrink: 0;
+  }
+  .lb-team-info {}
+  .lb-team-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .lb-owner {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .lb-franchise {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.7;
+  }
+  .lb-pts {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    text-align: right;
+  }
+  .lb-pts.zero { color: var(--muted); font-size: 14px; font-family: 'Rajdhani', sans-serif; }
+  .lb-budget {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: right;
+  }
+  .lb-change {
+    font-size: 12px;
+    text-align: right;
+  }
+  .lb-change.up { color: #4ade80; }
+  .lb-change.down { color: #f87171; }
+  .lb-change.same { color: var(--muted); }
+
+  /* top 3 row highlights */
+  .lb-row[data-rank="1"] { background: linear-gradient(90deg, rgba(255,215,0,0.06) 0%, transparent 80%); }
+  .lb-row[data-rank="2"] { background: linear-gradient(90deg, rgba(192,192,192,0.04) 0%, transparent 80%); }
+  .lb-row[data-rank="3"] { background: linear-gradient(90deg, rgba(205,127,50,0.04) 0%, transparent 80%); }
+
+  /* ─── TEAMS GRID ─── */
+  #teams { padding: 0 16px 80px; }
+  .teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .team-card {
+    background: var(--card);
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .team-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+  .team-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 20px 14px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background: var(--team-color, rgba(255,215,0,0.2));
+    pointer-events: none;
+  }
+  .team-logo-wrap {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid var(--team-color, var(--gold));
+    box-shadow: 0 0 14px var(--team-glow, rgba(255,215,0,0.2));
+  }
+  .team-logo-wrap img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 50%;
+  }
+  .team-header-info { flex: 1; min-width: 0; }
+  .team-franchise {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--team-color, var(--gold));
+    line-height: 1;
+  }
+  .team-owner-tag {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+  .team-pts-badge {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--gold);
+    text-align: right;
+  }
+  .team-pts-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: right;
+  }
+  .team-budget-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .team-budget-val { color: var(--text); font-weight: 600; }
+
+  .player-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .player-table th {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 20px 6px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .player-table th:last-child { text-align: right; padding-right: 20px; }
+  .player-table td {
+    padding: 7px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text);
+    vertical-align: middle;
+  }
+  .player-table td:last-child { text-align: right; padding-right: 20px; }
+  .player-table tr:last-child td { border-bottom: none; }
+  .player-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .player-name { font-weight: 600; font-size: 13px; }
+  .player-price {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .player-pts-val {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .player-pts-val.zero { color: var(--muted); font-family: 'Rajdhani', sans-serif; font-size: 13px; font-weight: 400; }
+
+  /* ─── ADMIN ─── */
+  #admin-section { padding: 0 16px 80px; }
+  .admin-wrap {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .admin-login {
+    background: var(--card);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+  .admin-login h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .admin-login p { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+  .admin-form { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .admin-input {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    color: var(--text);
+    font-size: 15px;
+    width: 100%;
+    max-width: 320px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .admin-input:focus { border-color: var(--gold); }
+  .admin-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 18px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 36px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .admin-btn:hover { opacity: 0.88; }
+  .admin-panel { display: none; }
+  .admin-panel.open { display: block; }
+  .admin-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .admin-panel-header h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+  .logout-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .logout-btn:hover { border-color: #f87171; color: #f87171; }
+  .admin-team-section {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .admin-team-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .admin-team-head h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .admin-team-body { padding: 16px 20px; display: none; }
+  .admin-team-body.open { display: block; }
+  .admin-player-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 70px;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .admin-player-name { font-size: 13px; color: var(--text); }
+  .pts-input {
+    font-family: 'Rajdhani', sans-serif;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: var(--gold);
+    font-size: 14px;
+    font-weight: 700;
+    width: 100%;
+    outline: none;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .pts-input:focus { border-color: var(--gold); }
+  .save-btn {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--gold);
+    background: rgba(255,215,0,0.08);
+    color: var(--gold);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .save-btn:hover { background: rgba(255,215,0,0.18); }
+  .save-all-btn {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 20px;
+    background: linear-gradient(135deg, var(--gold), var(--gold2));
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 40px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: opacity 0.2s;
+  }
+  .save-all-btn:hover { opacity: 0.88; }
+  .save-notice {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 13px;
+    color: #4ade80;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+  .save-notice.show { opacity: 1; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 30px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 600px) {
+    .lb-header, .lb-row {
+      grid-template-columns: 42px 1fr 90px;
+    }
+    .lb-budget, .lb-change { display: none; }
+    .lb-pts { font-size: 15px; }
+    .teams-grid { grid-template-columns: 1fr; }
+    .admin-player-row { grid-template-columns: 1fr 90px; }
+    .save-btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-trophy">🏆</div>
+  <h1>IPL 2026 Fantasy Auction</h1>
+  <div class="hero-sub">Friend League &nbsp;•&nbsp; Season 2026</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">9</div>
+      <div class="hero-stat-label">Teams</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="total-players-count">—</div>
+      <div class="hero-stat-label">Players</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="matches-played">0</div>
+      <div class="hero-stat-label">Match Days</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="top-scorer-stat">—</div>
+      <div class="hero-stat-label">Top Team Pts</div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn active" onclick="showSection('leaderboard',this)">🏅 Leaderboard</button>
+  <button class="nav-btn" onclick="showSection('teams',this)">🏏 Teams</button>
+  <button class="nav-btn" onclick="showSection('admin-section',this)">🔒 Admin</button>
+</div>
+
+<!-- LEADERBOARD -->
+<section id="leaderboard">
+  <div class="section-title">
+    <h2>🏅 <span>Standings</span></h2>
+    <div class="title-line"></div>
+  </div>
+  <div class="lb-table-wrap">
+    <div class="lb-header">
+      <div>Rank</div>
+      <div>Team &amp; Owner</div>
+      <div style="text-align:right">IPL Franchise</div>
+      <div style="text-align:right">Points</div>
+      <div style="text-align:right">Budget</div>
+    </div>
+    <div id="lb-body"></div>
+  </div>
+</section>
+
+<!-- TEAMS -->
+<section id="teams" style="display:none">
+  <div class="section-title">
+    <h2>🏏 <span>All Teams</span></h2>
+    <div class="title-line"></div>
+  </div>
+  <div class="teams-grid" id="teams-grid"></div>
+</section>
+
+<!-- ADMIN -->
+<section id="admin-section" style="display:none">
+  <div class="section-title">
+    <h2>🔒 <span>Admin Panel</span></h2>
+    <div class="title-line"></div>
+  </div>
+  <div class="admin-wrap">
+    <div class="admin-login" id="admin-login">
+      <h3>Admin Access</h3>
+      <p>Enter your password to update fantasy points after each match day</p>
+      <div class="admin-form">
+        <input class="admin-input" type="password" id="admin-pw" placeholder="Password" onkeydown="if(event.key==='Enter')adminLogin()">
+        <button class="admin-btn" onclick="adminLogin()">ENTER</button>
+      </div>
+      <div id="login-err" style="color:#f87171;font-size:13px;margin-top:12px;display:none">Incorrect password</div>
+    </div>
+    <div class="admin-panel" id="admin-panel">
+      <div class="admin-panel-header">
+        <h3>Update Points</h3>
+        <button class="logout-btn" onclick="adminLogout()">Logout</button>
+      </div>
+      <div id="admin-teams-list"></div>
+      <button class="save-all-btn" onclick="saveAll()">💾 SAVE ALL POINTS</button>
+      <div class="save-notice" id="save-notice">✅ Points saved successfully!</div>
+    </div>
+  </div>
+</section>
+
+<footer>IPL 2026 Fantasy League &nbsp;·&nbsp; Friend League &nbsp;·&nbsp; Built with 🏏 passion</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════════
+
+const ADMIN_PASSWORD = 'ipl2026admin';
+
+const IPL_LOGOS = {
+  MI: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/MI/Logos/Roundbig/MIroundbig.png',
+  DC: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/DC/Logos/Roundbig/DCroundbig.png',
+  PBKS: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/PBKS/Logos/Roundbig/PBKSroundbig.png',
+  CSK: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/CSK/Logos/Roundbig/CSKroundbig.png',
+  RR: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RR/Logos/Roundbig/RRroundbig.png',
+  GT: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/GT/Logos/Roundbig/GTroundbig.png',
+  SRH: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/SRH/Logos/Roundbig/SRHroundbig.png',
+  LSG: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/LSG/Logos/Roundbig/LSGroundbig.png',
+  RCB: 'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RCB/Logos/Roundbig/RCBroundbig.png',
+};
+
+const TEAM_COLORS = {
+  MI:   { color: '#004BA0', glow: 'rgba(0,75,160,0.35)' },
+  DC:   { color: '#2561AE', glow: 'rgba(37,97,174,0.35)' },
+  PBKS: { color: '#ED1B24', glow: 'rgba(237,27,36,0.35)' },
+  CSK:  { color: '#F9CD05', glow: 'rgba(249,205,5,0.35)' },
+  RR:   { color: '#EA1A85', glow: 'rgba(234,26,133,0.35)' },
+  GT:   { color: '#1C2B7C', glow: 'rgba(28,43,124,0.35)' },
+  SRH:  { color: '#F26522', glow: 'rgba(242,101,34,0.35)' },
+  LSG:  { color: '#A72056', glow: 'rgba(167,32,86,0.35)' },
+  RCB:  { color: '#C8102E', glow: 'rgba(200,16,46,0.35)' },
+};
+
+const TEAMS_RAW = [
+  {
+    id: 'MI', franchise: 'MI', owner: 'Rajdeep',
+    players: [
+      { name: 'Sai Kishore',       price: '9.5 Cr' },
+      { name: 'Digvesh Rathi',     price: '5.5 Cr' },
+      { name: 'Prabhsimran Singh', price: '7 Cr' },
+      { name: 'Abhishek Sharma',   price: '20 Cr' },
+      { name: 'Ishan Kishan',      price: '18 Cr' },
+      { name: 'Sanju Samson',      price: '25 Cr' },
+      { name: 'Sunil Narine',      price: '9 Cr' },
+      { name: 'Shivam Dube',       price: '15 Cr' },
+      { name: 'Josh Hazlewood',    price: '6.5 Cr' },
+      { name: 'Jason Holder',      price: '2 Cr' },
+      { name: 'Devdutt Padikkal',  price: '2 Cr' },
+    ]
+  },
+  {
+    id: 'DC', franchise: 'DC', owner: 'Sujal',
+    players: [
+      { name: 'Axar Patel',        price: '17 Cr' },
+      { name: 'Sai Sudarshan',     price: '18.5 Cr' },
+      { name: 'Mitch Marsh',       price: '14.5 Cr' },
+      { name: 'Ayush Badoni',      price: '4.8 Cr' },
+      { name: 'Avesh Khan',        price: '5 Cr' },
+      { name: 'Mayank Yadav',      price: '7.5 Cr' },
+      { name: 'Arshdeep Singh',    price: '12.5 Cr' },
+      { name: 'Phil Salt',         price: '16 Cr' },
+      { name: 'Cameron Green',     price: '12 Cr' },
+      { name: 'Bhuvi Kumar',       price: '6.5 Cr' },
+      { name: 'Dewald Brevis',     price: '4.5 Cr' },
+    ]
+  },
+  {
+    id: 'PBKS', franchise: 'PBKS', owner: 'Jaggi',
+    players: [
+      { name: 'QDK (Quinton de Kock)', price: '6 Cr' },
+      { name: 'Tilak Verma',       price: '13.5 Cr' },
+      { name: 'Mayank Markande',   price: '6.5 Cr' },
+      { name: 'Sai Baba',         price: '3.4 Cr' },
+      { name: 'Venky Iyer',        price: '3 Cr' },
+      { name: 'Aquib Nabi',        price: '14 Cr' },
+      { name: 'Anrich Nortje',     price: '7 Cr' },
+      { name: 'Nehal Wadhera',     price: '6 Cr' },
+      { name: 'Lockie Ferguson',   price: '2 Cr' },
+      { name: 'Travis Head',       price: '14 Cr' },
+      { name: 'Yashvi Jaiswal',    price: '15 Cr' },
+      { name: 'Fin Allen',         price: '12 Cr' },
+      { name: 'Noor Ahmed',        price: '13.5 Cr' },
+      { name: 'Khaleel Ahmed',     price: '3 Cr' },
+    ]
+  },
+  {
+    id: 'CSK', franchise: 'CSK', owner: 'Rushi',
+    players: [
+      { name: 'SKY (Suryakumar Yadav)', price: '17 Cr' },
+      { name: 'Shurfane Rutherford', price: '4.8 Cr' },
+      { name: 'Will Jacks',        price: '11 Cr' },
+      { name: 'Stubbs',            price: '13.5 Cr' },
+      { name: 'Sundar',            price: '8 Cr' },
+      { name: 'Prasidh Krishna',   price: '12 Cr' },
+      { name: 'Rishabh Pant',      price: '15 Cr' },
+      { name: 'MD Shami',          price: '9 Cr' },
+      { name: 'Marco Jansen',      price: '7 Cr' },
+      { name: 'Vaibhav Suryavanshi', price: '13 Cr' },
+      { name: 'Romario Shepherd',  price: '3.2 Cr' },
+      { name: 'Rinku Singh',       price: '6.5 Cr' },
+    ]
+  },
+  {
+    id: 'RR', franchise: 'RR', owner: 'Jayesh',
+    players: [
+      { name: 'Deepak Chahar',     price: '10 Cr' },
+      { name: 'Bumrah',            price: '32 Cr' },
+      { name: 'Jos Buttler',       price: '19 Cr' },
+      { name: 'Abdul Samad',       price: '3.8 Cr' },
+      { name: 'Shahbaz Ahmed',     price: '3 Cr' },
+      { name: 'Shreyas Iyer',      price: '20 Cr' },
+      { name: 'Omarzai',           price: '2 Cr' },
+      { name: 'MSD (Dhoni)',       price: '8 Cr' },
+      { name: 'Krunal Pandya',     price: '7 Cr' },
+      { name: 'Liam Livingstone',  price: '5 Cr' },
+      { name: 'Riyan Parag',       price: '10 Cr' },
+    ]
+  },
+  {
+    id: 'GT', franchise: 'GT', owner: 'Saksham',
+    players: [
+      { name: 'KL Rahul',          price: '24.5 Cr' },
+      { name: 'Karun Nair',        price: '7.5 Cr' },
+      { name: 'Kuldeep Yadav',     price: '15.5 Cr' },
+      { name: 'Mukesh Kumar',      price: '4 Cr' },
+      { name: 'Shubhman Gill',     price: '21.5 Cr' },
+      { name: 'Shahrukh Khan',     price: '3.2 Cr' },
+      { name: 'Aiden Markram',     price: '12 Cr' },
+      { name: 'Marcus Stoinis',    price: '6 Cr' },
+      { name: 'Yuzi Chahal',       price: '8 Cr' },
+      { name: 'Ajinkya Rahane',    price: '3.7 Cr' },
+      { name: 'Jofra Archer',      price: '6 Cr' },
+      { name: 'Ayush Mhatre',      price: '2.8 Cr' },
+      { name: 'Ravi Bishnoi',      price: '3.2 Cr' },
+      { name: 'Harshal Patel',     price: '2 Cr' },
+    ]
+  },
+  {
+    id: 'SRH', franchise: 'SRH', owner: 'Kartik',
+    players: [
+      { name: 'Santner',           price: '8.5 Cr' },
+      { name: 'Abhishek Porel',    price: '7.5 Cr' },
+      { name: 'David Miller',      price: '12 Cr' },
+      { name: 'Nitish Rana',       price: '5.5 Cr' },
+      { name: 'Starc',             price: '12 Cr' },
+      { name: 'Glenn Phillips',    price: '9.5 Cr' },
+      { name: 'MD Siraj',          price: '15 Cr' },
+      { name: 'Josh Inglis',       price: '6 Cr' },
+      { name: 'Varun Chakravarthy', price: '15 Cr' },
+      { name: 'Shashank Singh',    price: '5.5 Cr' },
+      { name: 'Heinrich Klaasen',  price: '17.5 Cr' },
+      { name: 'Matt Henry',        price: '3.6 Cr' },
+      { name: 'Vaibhav Arora',     price: '2.4 Cr' },
+    ]
+  },
+  {
+    id: 'LSG', franchise: 'LSG', owner: 'Suyash',
+    players: [
+      { name: 'Rohit Sharma',      price: '18.5 Cr' },
+      { name: 'Shardul Thakur',    price: '6.5 Cr' },
+      { name: 'Trent Boult',       price: '15 Cr' },
+      { name: 'Pathum Nissanka',   price: '4.4 Cr' },
+      { name: 'Rahul Tewatia',     price: '6.5 Cr' },
+      { name: 'Kagiso Rabada',     price: '17.5 Cr' },
+      { name: 'Priyansh Arya',     price: '8.5 Cr' },
+      { name: 'Ruturaj Gaikwad',   price: '15.5 Cr' },
+      { name: 'R Jadeja',          price: '9.5 Cr' },
+      { name: 'Hetmyer',           price: '5.5 Cr' },
+      { name: 'Jacob Bethell',     price: '6.5 Cr' },
+      { name: 'T Natarajan',       price: '6 Cr' },
+    ]
+  },
+  {
+    id: 'RCB', franchise: 'RCB', owner: 'Ketan',
+    players: [
+      { name: 'Hardik Pandya',     price: '25.5 Cr' },
+      { name: 'Naman Dhir',        price: '6 Cr' },
+      { name: 'Rashid Khan',       price: '16 Cr' },
+      { name: 'Harpreet Brar',     price: '2 Cr' },
+      { name: 'Virat Kohli',       price: '31.5 Cr' },
+      { name: 'Nicholas Pooran',   price: '15 Cr' },
+      { name: 'Rajat Patidar',     price: '8 Cr' },
+      { name: 'Tim David',         price: '6 Cr' },
+      { name: 'Tim Seifert',       price: '4 Cr' },
+      { name: 'Jacob Duffy',       price: '2 Cr' },
+      { name: 'Sandeep Sharma',    price: '2 Cr' },
+      { name: 'Jitesh Sharma',     price: '2 Cr' },
+    ]
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════
+// STATE — load from localStorage or init zeros
+// ═══════════════════════════════════════════════════════════════
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem('ipl2026_pts');
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  // init: all player points = 0
+  const state = {};
+  TEAMS_RAW.forEach(t => {
+    state[t.id] = {};
+    t.players.forEach(p => { state[t.id][p.name] = 0; });
+  });
+  return state;
+}
+
+function saveState(state) {
+  localStorage.setItem('ipl2026_pts', JSON.stringify(state));
+}
+
+let PTS = loadState();
+
+function getTeamTotal(teamId) {
+  const pts = PTS[teamId] || {};
+  return Object.values(pts).reduce((a, b) => a + (Number(b) || 0), 0);
+}
+
+function getTotalBudget(team) {
+  return team.players.reduce((sum, p) => {
+    const val = parseFloat(p.price.replace(' Cr','').replace('Cr','')) || 0;
+    return sum + val;
+  }, 0).toFixed(1);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// LEADERBOARD
+// ═══════════════════════════════════════════════════════════════
+
+function buildLeaderboard() {
+  const rows = TEAMS_RAW.map(t => ({
+    ...t,
+    total: getTeamTotal(t.id),
+    budget: getTotalBudget(t)
+  })).sort((a, b) => b.total - a.total);
+
+  const body = document.getElementById('lb-body');
+  body.innerHTML = '';
+  const medals = ['🥇','🥈','🥉'];
+
+  rows.forEach((t, i) => {
+    const rank = i + 1;
+    const rankClass = rank <= 3 ? `r${rank}` : '';
+    const medalHtml = rank <= 3 ? medals[i] : '';
+    const ptsHtml = t.total > 0
+      ? `<div class="lb-pts">${t.total}</div>`
+      : `<div class="lb-pts zero">—</div>`;
+
+    body.innerHTML += `
+      <div class="lb-row" data-rank="${rank}" onclick="showTeamDetail('${t.id}')">
+        <div class="lb-rank ${rankClass}">${medalHtml || rank}</div>
+        <div class="lb-team">
+          <img class="lb-logo" src="${IPL_LOGOS[t.id]}" alt="${t.franchise}"
+            onerror="this.style.display='none'">
+          <div class="lb-team-info">
+            <div class="lb-team-name">${t.franchise} — ${t.owner}</div>
+            <div class="lb-owner">Owner: ${t.owner}</div>
+            <div class="lb-franchise">${t.franchise}</div>
+          </div>
+        </div>
+        <div class="lb-franchise" style="text-align:right;align-self:center;">${t.franchise}</div>
+        ${ptsHtml}
+        <div class="lb-budget">${t.budget} Cr</div>
+      </div>`;
+  });
+
+  // update hero stats
+  const totalPlayers = TEAMS_RAW.reduce((s, t) => s + t.players.length, 0);
+  document.getElementById('total-players-count').textContent = totalPlayers;
+  const topPts = Math.max(...rows.map(r => r.total));
+  document.getElementById('top-scorer-stat').textContent = topPts > 0 ? topPts : '—';
+}
+
+// ═══════════════════════════════════════════════════════════════
+// TEAMS GRID
+// ═══════════════════════════════════════════════════════════════
+
+function buildTeamsGrid() {
+  const grid = document.getElementById('teams-grid');
+  grid.innerHTML = '';
+
+  TEAMS_RAW.forEach(t => {
+    const tc = TEAM_COLORS[t.id];
+    const teamTotal = getTeamTotal(t.id);
+    const budget = getTotalBudget(t);
+
+    let playerRows = '';
+    const sorted = [...t.players].sort((a, b) => {
+      const pa = PTS[t.id]?.[a.name] || 0;
+      const pb = PTS[t.id]?.[b.name] || 0;
+      return pb - pa;
+    });
+    sorted.forEach(p => {
+      const pts = PTS[t.id]?.[p.name] || 0;
+      playerRows += `
+        <tr>
+          <td>
+            <span class="player-name">${p.name}</span><br>
+            <span class="player-price">${p.price}</span>
+          </td>
+          <td>
+            ${pts > 0
+              ? `<span class="player-pts-val">${pts}</span>`
+              : `<span class="player-pts-val zero">—</span>`}
+          </td>
+        </tr>`;
+    });
+
+    grid.innerHTML += `
+      <div class="team-card" style="--team-color:${tc.color};--team-glow:${tc.glow}">
+        <div class="team-card-header">
+          <div class="team-logo-wrap">
+            <img src="${IPL_LOGOS[t.id]}" alt="${t.franchise}"
+              onerror="this.parentNode.innerHTML='<span style=font-size:20px;>🏏</span>'">
+          </div>
+          <div class="team-header-info">
+            <div class="team-franchise">${t.franchise}</div>
+            <div class="team-owner-tag">👤 ${t.owner}</div>
+          </div>
+          <div>
+            <div class="team-pts-badge">${teamTotal > 0 ? teamTotal : '—'}</div>
+            <div class="team-pts-label">Points</div>
+          </div>
+        </div>
+        <div class="team-budget-row">
+          <span>Total Budget</span>
+          <span class="team-budget-val">${budget} Cr</span>
+        </div>
+        <table class="player-table">
+          <thead>
+            <tr>
+              <th>Player (Price)</th>
+              <th style="text-align:right;padding-right:20px">Pts</th>
+            </tr>
+          </thead>
+          <tbody>${playerRows}</tbody>
+        </table>
+      </div>`;
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ADMIN PANEL
+// ═══════════════════════════════════════════════════════════════
+
+let adminOpen = false;
+
+function adminLogin() {
+  const pw = document.getElementById('admin-pw').value;
+  if (pw === ADMIN_PASSWORD) {
+    document.getElementById('admin-login').style.display = 'none';
+    document.getElementById('admin-panel').classList.add('open');
+    document.getElementById('login-err').style.display = 'none';
+    buildAdminPanel();
+    adminOpen = true;
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+
+function adminLogout() {
+  document.getElementById('admin-login').style.display = 'block';
+  document.getElementById('admin-panel').classList.remove('open');
+  document.getElementById('admin-pw').value = '';
+  adminOpen = false;
+}
+
+function buildAdminPanel() {
+  const container = document.getElementById('admin-teams-list');
+  container.innerHTML = '';
+  TEAMS_RAW.forEach(t => {
+    let playerRows = '';
+    t.players.forEach(p => {
+      const pts = PTS[t.id]?.[p.name] || 0;
+      const key = `pts_${t.id}_${p.name.replace(/\s/g,'_')}`;
+      playerRows += `
+        <div class="admin-player-row">
+          <div class="admin-player-name">${p.name} <span style="color:var(--muted);font-size:11px">(${p.price})</span></div>
+          <input class="pts-input" type="number" id="${key}" value="${pts}" min="0" placeholder="0">
+          <button class="save-btn" onclick="saveSingle('${t.id}','${p.name}','${key}')">Save</button>
+        </div>`;
+    });
+
+    container.innerHTML += `
+      <div class="admin-team-section">
+        <div class="admin-team-head" onclick="toggleAdminTeam('at_${t.id}')">
+          <h4 style="color:${TEAM_COLORS[t.id].color}">${t.franchise} — ${t.owner}</h4>
+          <span style="color:var(--muted);font-size:20px" id="at_arrow_${t.id}">▼</span>
+        </div>
+        <div class="admin-team-body" id="at_${t.id}">
+          ${playerRows}
+        </div>
+      </div>`;
+  });
+}
+
+function toggleAdminTeam(id) {
+  const el = document.getElementById(id);
+  const teamId = id.replace('at_','');
+  const arr = document.getElementById('at_arrow_'+teamId);
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open');
+  arr.textContent = isOpen ? '▼' : '▲';
+}
+
+function saveSingle(teamId, playerName, inputId) {
+  const val = parseInt(document.getElementById(inputId).value) || 0;
+  if (!PTS[teamId]) PTS[teamId] = {};
+  PTS[teamId][playerName] = val;
+  saveState(PTS);
+  buildLeaderboard();
+  buildTeamsGrid();
+  showNotice();
+}
+
+function saveAll() {
+  TEAMS_RAW.forEach(t => {
+    t.players.forEach(p => {
+      const key = `pts_${t.id}_${p.name.replace(/\s/g,'_')}`;
+      const el = document.getElementById(key);
+      if (el) {
+        if (!PTS[t.id]) PTS[t.id] = {};
+        PTS[t.id][p.name] = parseInt(el.value) || 0;
+      }
+    });
+  });
+  saveState(PTS);
+  buildLeaderboard();
+  buildTeamsGrid();
+  showNotice();
+}
+
+function showNotice() {
+  const n = document.getElementById('save-notice');
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════════════
+
+function showSection(id, btn) {
+  ['leaderboard','teams','admin-section'].forEach(s => {
+    document.getElementById(s).style.display = s === id ? 'block' : 'none';
+  });
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function showTeamDetail(teamId) {
+  showSection('teams', document.querySelectorAll('.nav-btn')[1]);
+  setTimeout(() => {
+    const cards = document.querySelectorAll('.team-card');
+    const idx = TEAMS_RAW.findIndex(t => t.id === teamId);
+    if (cards[idx]) cards[idx].scrollIntoView({ behavior:'smooth', block:'center' });
+  }, 100);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+
+buildLeaderboard();
+buildTeamsGrid();
+</script>
+</body>
+</html>
