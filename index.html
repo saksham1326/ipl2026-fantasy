@@ -9,10 +9,7 @@
 :root{--gold:#FFD700;--gold2:#FF8C00;--neon:#00F5FF;--neon2:#00FF88;--bg:#04060E;--bg2:#080C1A;--bg3:#0C1222;--card:#0E1525;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#E8EAF6;--muted:#6B7590;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;overflow-x:hidden;cursor:none;}
-
-#cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s;mix-blend-mode:difference;}
-#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(255,215,0,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .15s ease;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;overflow-x:hidden;cursor:default;}
 
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;animation:float linear infinite;opacity:0;}
@@ -34,7 +31,7 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .hstat-l{font-size:10px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
 
 .nav{position:sticky;top:0;z-index:100;display:flex;justify-content:center;gap:6px;padding:12px 16px;background:rgba(4,6,14,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.nav-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:40px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:none;transition:all .25s;position:relative;overflow:hidden;}
+.nav-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:40px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
 .nav-btn:hover,.nav-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,0.06);}
 
 .sec{position:relative;z-index:1;padding:0 16px 80px;}
@@ -46,7 +43,7 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 /* LEADERBOARD */
 .lb-wrap{max-width:960px;margin:0 auto;}
 .podium{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin-bottom:32px;flex-wrap:wrap;}
-.pod{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:none;}
+.pod{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;}
 .pod:hover .pod-card{transform:translateY(-8px);}
 .pod-card{border-radius:20px;padding:20px 14px;text-align:center;width:195px;transition:all .3s;position:relative;overflow:hidden;border:1px solid;}
 .p1 .pod-card{background:linear-gradient(145deg,#1a1300,#0e0a00);border-color:rgba(255,215,0,.4);box-shadow:0 0 40px rgba(255,215,0,.13),inset 0 1px 0 rgba(255,215,0,.15);}
@@ -68,7 +65,7 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 
 .lb-table{border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);}
 .lb-thead{display:grid;grid-template-columns:54px 1fr 130px 100px 90px;padding:12px 20px;background:rgba(255,215,0,.03);border-bottom:1px solid var(--border);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;}
-.lb-row{display:grid;grid-template-columns:54px 1fr 130px 100px 90px;padding:15px 20px;border-bottom:1px solid var(--border);align-items:center;transition:all .2s;cursor:none;position:relative;overflow:hidden;}
+.lb-row{display:grid;grid-template-columns:54px 1fr 130px 100px 90px;padding:15px 20px;border-bottom:1px solid var(--border);align-items:center;transition:all .2s;cursor:pointer;position:relative;overflow:hidden;}
 .lb-row:last-child{border-bottom:none;}
 .lb-row::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background .2s;}
 .lb-row:hover::after{background:var(--gold);}
@@ -136,22 +133,22 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 /* ADMIN */
 .admin-wrap{max-width:760px;margin:0 auto;}
 .adm-card{background:var(--card);border-radius:24px;border:1px solid var(--border);padding:50px 40px;text-align:center;position:relative;overflow:hidden;}
-.adm-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,.05),transparent 70%);}
+.adm-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,.05),transparent 70%);pointer-events:none;}
 .adm-card h3{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;margin-bottom:6px;}
 .adm-card p{color:var(--muted);font-size:14px;margin-bottom:28px;}
-.adm-inp{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:13px 20px;color:var(--text);font-size:16px;width:100%;max-width:340px;outline:none;transition:border-color .2s;display:block;margin:0 auto 12px;}
+.adm-inp{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:13px 20px;color:var(--text);font-size:16px;width:100%;max-width:340px;outline:none;transition:border-color .2s;display:block;margin:0 auto 12px;cursor:text;position:relative;z-index:2;}
 .adm-inp:focus{border-color:var(--gold);}
-.adm-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;padding:13px 40px;cursor:none;transition:opacity .2s,transform .2s;}
+.adm-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;padding:13px 40px;cursor:pointer;transition:opacity .2s,transform .2s;position:relative;z-index:2;}
 .adm-btn:hover{opacity:.88;transform:scale(.98);}
 .login-err{color:#f87171;font-size:13px;margin-top:10px;display:none;}
 .admin-panel{display:none;}
 .admin-panel.open{display:block;}
 .adm-phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
 .adm-phdr h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--gold);}
-.logout-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;padding:8px 18px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:none;transition:all .2s;}
+.logout-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;padding:8px 18px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;}
 .logout-btn:hover{border-color:#f87171;color:#f87171;}
 .adm-team{background:var(--card);border-radius:18px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden;}
-.adm-team-hdr{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);cursor:none;user-select:none;transition:background .2s;}
+.adm-team-hdr{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none;transition:background .2s;}
 .adm-team-hdr:hover{background:rgba(255,255,255,.02);}
 .adm-team-hdr h4{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:1px;flex:1;}
 .adm-logo{width:34px;height:34px;border-radius:50%;object-fit:contain;border:1px solid var(--border2);background:rgba(255,255,255,.04);}
@@ -164,17 +161,24 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .sel-wrap label{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700;}
 .sel-wrap label.cap-lbl{color:var(--gold);}
 .sel-wrap label.vc-lbl{color:var(--neon);}
-.cap-sel{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid rgba(255,215,0,.3);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;width:100%;outline:none;}
-.vc-sel{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid rgba(0,245,255,.3);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;width:100%;outline:none;}
+.cap-sel{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid rgba(255,215,0,.3);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;width:100%;outline:none;cursor:pointer;}
+.vc-sel{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid rgba(0,245,255,.3);border-radius:10px;padding:8px 12px;color:var(--text);font-size:13px;width:100%;outline:none;cursor:pointer;}
 .adm-pr{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin-bottom:9px;}
 .adm-pn{font-size:13px;color:var(--text);}
 .adm-pp{font-size:11px;color:var(--muted);}
-.pts-inp{font-family:'Orbitron',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:7px 10px;color:var(--gold);font-size:13px;font-weight:700;width:100%;outline:none;text-align:center;transition:border-color .2s;}
+.pts-inp{font-family:'Orbitron',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:7px 10px;color:var(--gold);font-size:13px;font-weight:700;width:100%;outline:none;text-align:center;transition:border-color .2s;cursor:text;}
 .pts-inp:focus{border-color:var(--gold);}
-.save-all-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:14px;padding:16px 40px;cursor:none;width:100%;margin-top:24px;transition:opacity .2s,transform .2s;}
+.save-all-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:14px;padding:16px 40px;cursor:pointer;width:100%;margin-top:24px;transition:opacity .2s,transform .2s;}
 .save-all-btn:hover{opacity:.88;transform:scale(.99);}
 .save-notice{text-align:center;margin-top:14px;font-size:14px;color:#4ade80;opacity:0;transition:opacity .4s;letter-spacing:1px;}
 .save-notice.show{opacity:1;}
+
+/* SYNC INDICATOR */
+.sync-bar{position:fixed;bottom:18px;right:18px;z-index:200;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px 16px;font-size:12px;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:8px;transition:all .4s;opacity:0;transform:translateY(10px);}
+.sync-bar.show{opacity:1;transform:translateY(0);}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--neon2);animation:pulse 1.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.sync-dot.err{background:#f87171;animation:none;}
 
 footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);letter-spacing:2px;}
 
@@ -191,8 +195,6 @@ footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-to
 </style>
 </head>
 <body>
-<div id="cursor"></div>
-<div id="cursor-ring"></div>
 <div id="particles"></div>
 
 <div class="hero">
@@ -241,17 +243,17 @@ footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-to
     <div class="adm-card" id="adm-login-card">
       <h3>Admin Access</h3>
       <p>Enter password to manage points &amp; Captain / Vice Captain</p>
-      <input class="adm-inp" type="password" id="adm-pw" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
-      <button class="adm-btn" onclick="doLogin()">ENTER THE ARENA</button>
+      <input class="adm-inp" type="password" id="adm-pw" placeholder="Password">
+      <button class="adm-btn" id="adm-login-btn">ENTER THE ARENA</button>
       <div class="login-err" id="login-err">❌ Wrong password. Try again.</div>
     </div>
     <div class="admin-panel" id="adm-panel">
       <div class="adm-phdr">
         <h3>⚙️ Manage Points &amp; C / VC</h3>
-        <button class="logout-btn" onclick="doLogout()">Logout</button>
+        <button class="logout-btn" id="logout-btn">Logout</button>
       </div>
       <div id="adm-teams"></div>
-      <button class="save-all-btn" onclick="saveAll()">💾 SAVE ALL CHANGES</button>
+      <button class="save-all-btn" id="save-all-btn">💾 SAVE ALL CHANGES</button>
       <div class="save-notice" id="save-notice">✅ All changes saved successfully!</div>
     </div>
   </div>
@@ -259,18 +261,13 @@ footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-to
 
 <footer>IPL 2026 Fantasy League &nbsp;·&nbsp; Friend League &nbsp;·&nbsp; Built with 🏏 passion</footer>
 
-<script>
-/* ── CURSOR ── */
-const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
-setInterval(()=>{rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';},16);
-function addHover(sel){document.querySelectorAll(sel).forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='46px';ring.style.height='46px';ring.style.borderColor='rgba(255,215,0,.9)';});
-  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(255,215,0,.5)';});
-});}
-setTimeout(()=>addHover('button,.nav-btn,.lb-row,.tc,.hstat,.adm-team-hdr,.pod'),500);
+<!-- Sync status indicator -->
+<div class="sync-bar" id="sync-bar">
+  <div class="sync-dot" id="sync-dot"></div>
+  <span id="sync-msg">Syncing…</span>
+</div>
 
+<script>
 /* ── PARTICLES ── */
 const pc=document.getElementById('particles');
 for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';
@@ -340,16 +337,90 @@ const TEAMS=[
     {n:'Jacob Duffy',p:'2 Cr'},{n:'Sandeep Sharma',p:'2 Cr'},{n:'Jitesh Sharma',p:'2 Cr'}]},
 ];
 
-/* ── STATE ── */
-function loadST(){
-  try{const s=localStorage.getItem('ipl26v3');if(s)return JSON.parse(s);}catch(e){}
+/* ── STORAGE KEY ── */
+const STORAGE_KEY = 'ipl26_shared_state';
+
+/* ── DEFAULT STATE BUILDER ── */
+function defaultST(){
   const st={pts:{},cap:{},vc:{}};
   TEAMS.forEach(t=>{st.pts[t.id]={};t.pl.forEach(p=>{st.pts[t.id][p.n]=0;});st.cap[t.id]='';st.vc[t.id]='';});
   return st;
 }
-function saveST(){localStorage.setItem('ipl26v3',JSON.stringify(ST));}
-let ST=loadST();
 
+/* ── IN-MEMORY STATE (always present) ── */
+let ST = defaultST();
+
+/* ── SYNC BAR ── */
+function showSync(msg, isErr=false){
+  const bar=document.getElementById('sync-bar');
+  const dot=document.getElementById('sync-dot');
+  const txt=document.getElementById('sync-msg');
+  txt.textContent=msg;
+  dot.className='sync-dot'+(isErr?' err':'');
+  bar.classList.add('show');
+  clearTimeout(bar._t);
+  bar._t=setTimeout(()=>bar.classList.remove('show'),3000);
+}
+
+/* ── SHARED STORAGE VIA window.storage ── */
+async function loadFromStorage(){
+  try {
+    const result = await window.storage.get(STORAGE_KEY, true); // shared=true
+    if(result && result.value){
+      const parsed = JSON.parse(result.value);
+      // Merge carefully — keep defaults for missing keys
+      const fresh = defaultST();
+      if(parsed.pts) Object.keys(parsed.pts).forEach(tid=>{
+        if(fresh.pts[tid]) Object.keys(parsed.pts[tid]).forEach(pn=>{
+          if(pn in fresh.pts[tid]) fresh.pts[tid][pn]=Number(parsed.pts[tid][pn])||0;
+        });
+      });
+      if(parsed.cap) Object.keys(parsed.cap).forEach(tid=>{ if(tid in fresh.cap) fresh.cap[tid]=parsed.cap[tid]||''; });
+      if(parsed.vc) Object.keys(parsed.vc).forEach(tid=>{ if(tid in fresh.vc) fresh.vc[tid]=parsed.vc[tid]||''; });
+      ST = fresh;
+    }
+  } catch(e){
+    // Key doesn't exist yet or error — use defaults, that's fine
+  }
+}
+
+async function saveToStorage(){
+  try {
+    await window.storage.set(STORAGE_KEY, JSON.stringify(ST), true); // shared=true
+    showSync('✅ Saved & synced for everyone!');
+  } catch(e){
+    // Fallback to localStorage
+    try { localStorage.setItem('ipl26v3_fallback', JSON.stringify(ST)); } catch(_){}
+    showSync('⚠️ Saved locally only', true);
+  }
+}
+
+/* ── POLL FOR UPDATES every 15s (so viewers see changes without refresh) ── */
+async function pollUpdates(){
+  try {
+    const result = await window.storage.get(STORAGE_KEY, true);
+    if(result && result.value){
+      const parsed = JSON.parse(result.value);
+      const fresh = defaultST();
+      if(parsed.pts) Object.keys(parsed.pts).forEach(tid=>{
+        if(fresh.pts[tid]) Object.keys(parsed.pts[tid]).forEach(pn=>{
+          if(pn in fresh.pts[tid]) fresh.pts[tid][pn]=Number(parsed.pts[tid][pn])||0;
+        });
+      });
+      if(parsed.cap) Object.keys(parsed.cap).forEach(tid=>{ if(tid in fresh.cap) fresh.cap[tid]=parsed.cap[tid]||''; });
+      if(parsed.vc) Object.keys(parsed.vc).forEach(tid=>{ if(tid in fresh.vc) fresh.vc[tid]=parsed.vc[tid]||''; });
+      // Only re-render if data actually changed
+      if(JSON.stringify(fresh)!==JSON.stringify(ST)){
+        ST=fresh;
+        buildLB();buildTeams();
+        showSync('🔄 Points updated!');
+      }
+    }
+  } catch(e){ /* silently ignore poll errors */ }
+}
+setInterval(pollUpdates, 15000);
+
+/* ── HELPERS ── */
 function bud(t){return t.pl.reduce((s,p)=>s+(parseFloat(p.p)||0),0).toFixed(1);}
 function rawPts(tid,pn){return Number(ST.pts[tid]?.[pn])||0;}
 function effPts(tid,pn){
@@ -365,7 +436,6 @@ function buildLB(){
   const medals=['🥇','🥈','🥉'];
   const sorted=[...TEAMS].map(t=>({...t,tot:teamTotal(t.id),b:bud(t)})).sort((a,b)=>b.tot-a.tot);
 
-  // podium
   const pod=document.getElementById('podium');pod.innerHTML='';
   sorted.slice(0,3).forEach((t,i)=>{
     const cn=ST.cap[t.id],vn=ST.vc[t.id];
@@ -383,7 +453,6 @@ function buildLB(){
     </div>`;
   });
 
-  // table rows
   const body=document.getElementById('lb-body');body.innerHTML='';
   sorted.forEach((t,i)=>{
     const r=i+1,col=TC[t.id];
@@ -408,7 +477,6 @@ function buildLB(){
     </div>`;
   });
 
-  // hero stats
   document.getElementById('hs-p').textContent=TEAMS.reduce((s,t)=>s+t.pl.length,0);
   const top=Math.max(0,...sorted.map(x=>x.tot));
   document.getElementById('hs-top').textContent=top>0?top.toFixed(0):'—';
@@ -449,21 +517,30 @@ function buildTeams(){
 }
 
 /* ── ADMIN ── */
+const ADMIN_PASSWORD = 'ipl2026admin';
+
 function doLogin(){
-  if(document.getElementById('adm-pw').value==='ipl2026admin'){
+  const pwEl = document.getElementById('adm-pw');
+  const errEl = document.getElementById('login-err');
+  const pw = pwEl.value.trim();
+  if(pw === ADMIN_PASSWORD){
     document.getElementById('adm-login-card').style.display='none';
     document.getElementById('adm-panel').classList.add('open');
-    document.getElementById('login-err').style.display='none';
+    errEl.style.display='none';
     buildAdmin();
   } else {
-    document.getElementById('login-err').style.display='block';
+    errEl.style.display='block';
+    pwEl.focus();
+    pwEl.select();
   }
 }
+
 function doLogout(){
-  document.getElementById('adm-login-card').style.display='block';
+  document.getElementById('adm-login-card').style.display='';
   document.getElementById('adm-panel').classList.remove('open');
   document.getElementById('adm-pw').value='';
 }
+
 function buildAdmin(){
   const c=document.getElementById('adm-teams');c.innerHTML='';
   TEAMS.forEach(t=>{
@@ -501,8 +578,8 @@ function buildAdmin(){
       </div>
     </div>`;
   });
-  setTimeout(()=>addHover('.adm-team-hdr'),100);
 }
+
 function toggleAt(bid,aid){
   const b=document.getElementById(bid),a=document.getElementById(aid);
   b.classList.toggle('open');a.textContent=b.classList.contains('open')?'▲':'▼';
@@ -510,14 +587,15 @@ function toggleAt(bid,aid){
 function onCapChange(tid){
   const val=document.getElementById('cap_'+tid).value;
   if(val&&val===ST.vc[tid]){ST.vc[tid]='';const v=document.getElementById('vc_'+tid);if(v)v.value='';}
-  ST.cap[tid]=val;saveST();buildLB();buildTeams();
+  ST.cap[tid]=val;buildLB();buildTeams();
 }
 function onVCChange(tid){
   const val=document.getElementById('vc_'+tid).value;
   if(val&&val===ST.cap[tid]){ST.cap[tid]='';const v=document.getElementById('cap_'+tid);if(v)v.value='';}
-  ST.vc[tid]=val;saveST();buildLB();buildTeams();
+  ST.vc[tid]=val;buildLB();buildTeams();
 }
-function saveAll(){
+
+async function saveAll(){
   TEAMS.forEach(t=>{
     t.pl.forEach(p=>{
       const key=`pts_${t.id}_${p.n.replace(/\W+/g,'_')}`;
@@ -528,7 +606,10 @@ function saveAll(){
     if(ce)ST.cap[t.id]=ce.value;
     if(ve)ST.vc[t.id]=ve.value;
   });
-  saveST();buildLB();buildTeams();
+  buildLB();buildTeams();
+  // Save to shared storage
+  await saveToStorage();
+  // Visual notice
   const n=document.getElementById('save-notice');n.classList.add('show');
   setTimeout(()=>n.classList.remove('show'),3500);
 }
@@ -548,8 +629,18 @@ function goTeam(id){
   },120);
 }
 
+/* ── WIRE UP BUTTONS (no inline handlers for login/logout) ── */
+document.getElementById('adm-login-btn').addEventListener('click', doLogin);
+document.getElementById('adm-pw').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+document.getElementById('logout-btn').addEventListener('click', doLogout);
+document.getElementById('save-all-btn').addEventListener('click', saveAll);
+
 /* ── INIT ── */
-buildLB();buildTeams();
+(async function init(){
+  await loadFromStorage();
+  buildLB();
+  buildTeams();
+})();
 </script>
 </body>
 </html>
