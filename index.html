@@ -9,12 +9,10 @@
 :root{--gold:#FFD700;--gold2:#FF8C00;--neon:#00F5FF;--neon2:#00FF88;--bg:#04060E;--bg2:#080C1A;--bg3:#0C1222;--card:#0E1525;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#E8EAF6;--muted:#6B7590;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;overflow-x:hidden;cursor:default;}
-
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;overflow-x:hidden;}
 #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
 .particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;animation:float linear infinite;opacity:0;}
 @keyframes float{0%{transform:translateY(100vh);opacity:0;}10%{opacity:.5;}90%{opacity:.15;}100%{transform:translateY(-10vh) translateX(20px);opacity:0;}}
-
 .hero{position:relative;z-index:1;text-align:center;padding:70px 20px 50px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(0,245,255,0.06),transparent 70%),radial-gradient(ellipse 50% 40% at 80% 50%,rgba(255,140,0,0.04),transparent 60%);pointer-events:none;}
 .crown{font-size:70px;display:block;animation:crownFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 28px rgba(255,215,0,0.6));}
@@ -24,23 +22,19 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .hero-sub{font-family:'Orbitron',sans-serif;font-size:clamp(10px,2vw,13px);letter-spacing:7px;color:var(--neon);text-transform:uppercase;margin-bottom:36px;opacity:.8;}
 .hero-stats{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
 .hstat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:16px;padding:16px 26px;text-align:center;transition:all .3s;position:relative;overflow:hidden;}
-.hstat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,215,0,0.05),transparent);opacity:0;transition:opacity .3s;}
+.hstat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,215,0,0.05),transparent);opacity:0;transition:opacity .3s;pointer-events:none;}
 .hstat:hover::before{opacity:1;}
 .hstat:hover{border-color:rgba(255,215,0,0.3);transform:translateY(-4px);}
 .hstat-n{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1;}
 .hstat-l{font-size:10px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
-
 .nav{position:sticky;top:0;z-index:100;display:flex;justify-content:center;gap:6px;padding:12px 16px;background:rgba(4,6,14,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.nav-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:40px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.nav-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:9px 22px;border-radius:40px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .25s;}
 .nav-btn:hover,.nav-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,0.06);}
-
 .sec{position:relative;z-index:1;padding:0 16px 80px;}
 .sec-title{text-align:center;padding:50px 16px 36px;}
 .sec-title h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,56px);letter-spacing:4px;}
 .sec-title h2 span{background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .title-bar{width:80px;height:3px;margin:12px auto 0;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--neon),var(--gold));}
-
-/* LEADERBOARD */
 .lb-wrap{max-width:960px;margin:0 auto;}
 .podium{display:flex;justify-content:center;align-items:flex-end;gap:14px;margin-bottom:32px;flex-wrap:wrap;}
 .pod{display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;}
@@ -62,7 +56,6 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .p1 .pod-base{background:linear-gradient(90deg,#FFD700,#FF8C00);height:9px;}
 .p2 .pod-base{background:#777;}
 .p3 .pod-base{background:#7B4A1E;}
-
 .lb-table{border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--bg2);}
 .lb-thead{display:grid;grid-template-columns:54px 1fr 130px 100px 90px;padding:12px 20px;background:rgba(255,215,0,.03);border-bottom:1px solid var(--border);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;}
 .lb-row{display:grid;grid-template-columns:54px 1fr 130px 100px 90px;padding:15px 20px;border-bottom:1px solid var(--border);align-items:center;transition:all .2s;cursor:pointer;position:relative;overflow:hidden;}
@@ -81,7 +74,6 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .lb-logo{width:44px;height:44px;border-radius:50%;object-fit:contain;border:1.5px solid var(--border2);padding:2px;background:rgba(255,255,255,.04);transition:transform .3s;}
 .lb-row:hover .lb-logo{transform:scale(1.15) rotate(6deg);}
 .lb-tname{font-weight:700;font-size:15px;}
-.lb-owner-txt{font-size:12px;color:var(--muted);}
 .lb-fbadge{font-size:10px;letter-spacing:1.5px;font-weight:700;padding:2px 8px;border-radius:20px;border:1px solid;display:inline-block;margin-top:3px;}
 .cv-cell{text-align:right;}
 .cv-line{font-size:11px;color:var(--muted);}
@@ -90,8 +82,6 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .lb-pts{font-family:'Orbitron',sans-serif;font-size:17px;font-weight:900;color:var(--gold);text-align:right;}
 .lb-pts.zero{color:var(--muted);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:400;}
 .lb-bud{font-size:13px;color:var(--muted);text-align:right;}
-
-/* TEAMS */
 .teams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:24px;max-width:1240px;margin:0 auto;}
 .tc{background:var(--card);border-radius:22px;border:1px solid var(--border);overflow:hidden;transition:all .3s;position:relative;}
 .tc:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 0 1px var(--tc,var(--gold)) inset;}
@@ -129,24 +119,44 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .ppts{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:var(--gold);}
 .ppts.zero{color:var(--muted);font-family:'Rajdhani',sans-serif;}
 .ppts-raw{font-size:10px;color:var(--muted);display:block;font-family:'Rajdhani',sans-serif;font-weight:400;}
-
-/* ADMIN */
+/* Admin */
 .admin-wrap{max-width:760px;margin:0 auto;}
 .adm-card{background:var(--card);border-radius:24px;border:1px solid var(--border);padding:50px 40px;text-align:center;position:relative;overflow:hidden;}
 .adm-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,215,0,.05),transparent 70%);pointer-events:none;}
-.adm-card h3{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;margin-bottom:6px;}
-.adm-card p{color:var(--muted);font-size:14px;margin-bottom:28px;}
-.adm-inp{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:13px 20px;color:var(--text);font-size:16px;width:100%;max-width:340px;outline:none;transition:border-color .2s;display:block;margin:0 auto 12px;cursor:text;position:relative;z-index:2;}
+.adm-card h3{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;margin-bottom:6px;position:relative;z-index:2;}
+.adm-card p{color:var(--muted);font-size:14px;margin-bottom:28px;position:relative;z-index:2;}
+.adm-inp{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:12px;padding:13px 20px;color:var(--text);font-size:16px;width:100%;max-width:340px;outline:none;transition:border-color .2s;display:block;margin:0 auto 12px;position:relative;z-index:2;}
 .adm-inp:focus{border-color:var(--gold);}
 .adm-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:20px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:12px;padding:13px 40px;cursor:pointer;transition:opacity .2s,transform .2s;position:relative;z-index:2;}
 .adm-btn:hover{opacity:.88;transform:scale(.98);}
-.login-err{color:#f87171;font-size:13px;margin-top:10px;display:none;}
+.login-err{color:#f87171;font-size:13px;margin-top:10px;display:none;position:relative;z-index:2;}
 .admin-panel{display:none;}
 .admin-panel.open{display:block;}
-.adm-phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.adm-phdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
 .adm-phdr h3{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--gold);}
 .logout-btn{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;padding:8px 18px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;}
 .logout-btn:hover{border-color:#f87171;color:#f87171;}
+/* Firebase connect banner inside admin */
+.fb-banner{background:rgba(0,245,255,.05);border:1px solid rgba(0,245,255,.2);border-radius:14px;padding:18px 20px;margin-bottom:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.fb-banner-txt{flex:1;min-width:0;}
+.fb-banner-txt h4{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1.5px;color:var(--neon);margin-bottom:2px;}
+.fb-banner-txt p{font-size:12px;color:var(--muted);line-height:1.5;}
+.fb-connect-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:15px;background:rgba(0,245,255,.15);color:var(--neon);border:1px solid rgba(0,245,255,.35);border-radius:10px;padding:9px 20px;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.fb-connect-btn:hover{background:rgba(0,245,255,.25);}
+.fb-connected-badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--neon2);font-weight:700;letter-spacing:1px;}
+/* Firebase modal */
+.modal-bg{position:fixed;inset:0;z-index:500;background:rgba(4,6,14,.85);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
+.modal-box{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:32px;max-width:480px;width:100%;}
+.modal-box h3{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
+.modal-box p{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;}
+.modal-steps{background:rgba(255,255,255,.03);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--muted);line-height:2;}
+.modal-steps b{color:var(--text);}
+.modal-ta{font-family:'Rajdhani',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:10px;padding:10px 14px;color:var(--text);font-size:13px;width:100%;outline:none;resize:vertical;min-height:120px;margin-bottom:10px;transition:border-color .2s;}
+.modal-ta:focus{border-color:var(--gold);}
+.modal-btns{display:flex;gap:10px;}
+.modal-save{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:17px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:10px;padding:11px 28px;cursor:pointer;flex:1;}
+.modal-cancel{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;background:transparent;border:1px solid var(--border2);border-radius:10px;padding:11px 20px;color:var(--muted);cursor:pointer;}
+.modal-err{color:#f87171;font-size:12px;margin-top:8px;display:none;}
 .adm-team{background:var(--card);border-radius:18px;border:1px solid var(--border);margin-bottom:14px;overflow:hidden;}
 .adm-team-hdr{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none;transition:background .2s;}
 .adm-team-hdr:hover{background:rgba(255,255,255,.02);}
@@ -166,22 +176,22 @@ body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;fo
 .adm-pr{display:grid;grid-template-columns:1fr 110px;gap:8px;align-items:center;margin-bottom:9px;}
 .adm-pn{font-size:13px;color:var(--text);}
 .adm-pp{font-size:11px;color:var(--muted);}
-.pts-inp{font-family:'Orbitron',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:7px 10px;color:var(--gold);font-size:13px;font-weight:700;width:100%;outline:none;text-align:center;transition:border-color .2s;cursor:text;}
+.pts-inp{font-family:'Orbitron',sans-serif;background:var(--bg);border:1px solid var(--border2);border-radius:8px;padding:7px 10px;color:var(--gold);font-size:13px;font-weight:700;width:100%;outline:none;text-align:center;transition:border-color .2s;}
 .pts-inp:focus{border-color:var(--gold);}
 .save-all-btn{font-family:'Bebas Neue',sans-serif;letter-spacing:3px;font-size:22px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:14px;padding:16px 40px;cursor:pointer;width:100%;margin-top:24px;transition:opacity .2s,transform .2s;}
-.save-all-btn:hover{opacity:.88;transform:scale(.99);}
-.save-notice{text-align:center;margin-top:14px;font-size:14px;color:#4ade80;opacity:0;transition:opacity .4s;letter-spacing:1px;}
+.save-all-btn:hover:not(:disabled){opacity:.88;transform:scale(.99);}
+.save-all-btn:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+.save-notice{text-align:center;margin-top:14px;font-size:14px;opacity:0;transition:opacity .4s;letter-spacing:1px;min-height:20px;}
 .save-notice.show{opacity:1;}
-
-/* SYNC INDICATOR */
-.sync-bar{position:fixed;bottom:18px;right:18px;z-index:200;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:8px 16px;font-size:12px;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:8px;transition:all .4s;opacity:0;transform:translateY(10px);}
+.save-notice.ok{color:#4ade80;}
+.save-notice.err{color:#f87171;}
+/* Sync toast */
+.sync-bar{position:fixed;bottom:18px;right:18px;z-index:999;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:9px 18px;font-size:12px;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:8px;transition:all .4s;opacity:0;transform:translateY(10px);pointer-events:none;}
 .sync-bar.show{opacity:1;transform:translateY(0);}
 .sync-dot{width:7px;height:7px;border-radius:50%;background:var(--neon2);animation:pulse 1.4s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 .sync-dot.err{background:#f87171;animation:none;}
-
 footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);letter-spacing:2px;}
-
 @media(max-width:640px){
   .lb-thead,.lb-row{grid-template-columns:44px 1fr 80px;}
   .lb-bud,.cv-cell{display:none;}
@@ -195,6 +205,27 @@ footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-to
 </style>
 </head>
 <body>
+
+<!-- Firebase connect modal (hidden by default) -->
+<div class="modal-bg" id="fb-modal" style="display:none">
+  <div class="modal-box">
+    <h3>🔥 Connect Firebase</h3>
+    <p>Paste your Firebase config JSON below to enable global saving — all 9 teams will see updates instantly.</p>
+    <div class="modal-steps">
+      <b>1.</b> Go to <b>console.firebase.google.com</b><br>
+      <b>2.</b> Create project → Add Web App → copy config JSON<br>
+      <b>3.</b> Enable <b>Firestore Database</b> (Start in test mode)<br>
+      <b>4.</b> Paste config here and click Connect
+    </div>
+    <textarea class="modal-ta" id="fb-cfg-ta" placeholder='{"apiKey":"AIza...","authDomain":"...","projectId":"...","storageBucket":"...","messagingSenderId":"...","appId":"..."}'></textarea>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeFbModal()">Cancel</button>
+      <button class="modal-save" onclick="connectFirebase()">⚡ CONNECT</button>
+    </div>
+    <div class="modal-err" id="fb-modal-err"></div>
+  </div>
+</div>
+
 <div id="particles"></div>
 
 <div class="hero">
@@ -252,44 +283,45 @@ footer{position:relative;z-index:1;text-align:center;padding:28px 16px;border-to
         <h3>⚙️ Manage Points &amp; C / VC</h3>
         <button class="logout-btn" id="logout-btn">Logout</button>
       </div>
+
+      <!-- Firebase banner -->
+      <div class="fb-banner" id="fb-banner">
+        <div class="fb-banner-txt">
+          <h4>🔥 Enable Global Sync</h4>
+          <p id="fb-status-txt">Connect Firebase so all 9 teams see your changes live — no refresh needed.</p>
+        </div>
+        <button class="fb-connect-btn" id="fb-connect-btn" onclick="openFbModal()">Connect Firebase</button>
+      </div>
+
       <div id="adm-teams"></div>
       <button class="save-all-btn" id="save-all-btn">💾 SAVE ALL CHANGES</button>
-      <div class="save-notice" id="save-notice">✅ All changes saved successfully!</div>
+      <div class="save-notice" id="save-notice"></div>
     </div>
   </div>
 </section>
 
 <footer>IPL 2026 Fantasy League &nbsp;·&nbsp; Friend League &nbsp;·&nbsp; Built with 🏏 passion</footer>
 
-<!-- Sync status indicator -->
 <div class="sync-bar" id="sync-bar">
   <div class="sync-dot" id="sync-dot"></div>
   <span id="sync-msg">Syncing…</span>
 </div>
 
-<script>
-/* ── PARTICLES ── */
-const pc=document.getElementById('particles');
-for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';
-  p.style.cssText=`left:${Math.random()*100}%;animation-duration:${8+Math.random()*14}s;animation-delay:${Math.random()*12}s;`;pc.appendChild(p);}
+<script type="module">
+import { initializeApp, getApps } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getFirestore, doc, getDoc, setDoc, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 
-/* ── STATIC DATA ── */
-const LOGOS={
-  MI:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/MI/Logos/Roundbig/MIroundbig.png',
-  DC:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/DC/Logos/Roundbig/DCroundbig.png',
-  PBKS:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/PBKS/Logos/Roundbig/PBKSroundbig.png',
-  CSK:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/CSK/Logos/Roundbig/CSKroundbig.png',
-  RR:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RR/Logos/Roundbig/RRroundbig.png',
-  GT:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/GT/Logos/Roundbig/GTroundbig.png',
-  SRH:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/SRH/Logos/Roundbig/SRHroundbig.png',
-  LSG:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/LSG/Logos/Roundbig/LSGroundbig.png',
-  RCB:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RCB/Logos/Roundbig/RCBroundbig.png',
-};
+// ── Particles ──────────────────────────────────────
+const pc=document.getElementById('particles');
+for(let i=0;i<28;i++){const p=document.createElement('div');p.className='particle';p.style.cssText=`left:${Math.random()*100}%;animation-duration:${8+Math.random()*14}s;animation-delay:${Math.random()*12}s;`;pc.appendChild(p);}
+
+// ── Data ───────────────────────────────────────────
+const LOGOS={MI:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/MI/Logos/Roundbig/MIroundbig.png',DC:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/DC/Logos/Roundbig/DCroundbig.png',PBKS:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/PBKS/Logos/Roundbig/PBKSroundbig.png',CSK:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/CSK/Logos/Roundbig/CSKroundbig.png',RR:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RR/Logos/Roundbig/RRroundbig.png',GT:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/GT/Logos/Roundbig/GTroundbig.png',SRH:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/SRH/Logos/Roundbig/SRHroundbig.png',LSG:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/LSG/Logos/Roundbig/LSGroundbig.png',RCB:'https://bcciplayerimages.s3.ap-south-1.amazonaws.com/ipl/RCB/Logos/Roundbig/RCBroundbig.png'};
 const TC={MI:{c:'#004BA0',g:'rgba(0,75,160,.35)'},DC:{c:'#2561AE',g:'rgba(37,97,174,.35)'},PBKS:{c:'#ED1B24',g:'rgba(237,27,36,.35)'},CSK:{c:'#F9CD05',g:'rgba(249,205,5,.35)'},RR:{c:'#EA1A85',g:'rgba(234,26,133,.35)'},GT:{c:'#1C2B7C',g:'rgba(28,43,124,.35)'},SRH:{c:'#F26522',g:'rgba(242,101,34,.35)'},LSG:{c:'#A72056',g:'rgba(167,32,86,.35)'},RCB:{c:'#C8102E',g:'rgba(200,16,46,.35)'}};
 const TEAMS=[
   {id:'MI',f:'Mumbai Indians',s:'MI',o:'Rajdeep',pl:[
     {n:'Sai Kishore',p:'9.5 Cr'},{n:'Digvesh Rathi',p:'5.5 Cr'},{n:'Prabhsimran Singh',p:'7 Cr'},
-    {n:'Abhishek Sharma',p:'20 Cr'},{n:'Ishan Kishan',p:'18 Cr'},{n:'Sanju Samson',p:'25 Cr'},
+    {n:'Abhishek Sharma',p:'20 Cr'},{n:'Ishan Kishan',p:'18 Cr'},{n:'Rohit Sharma',p:'18.5 Cr'},
     {n:'Sunil Narine',p:'9 Cr'},{n:'Shivam Dube',p:'15 Cr'},{n:'Josh Hazlewood',p:'6.5 Cr'},
     {n:'Jason Holder',p:'2 Cr'},{n:'Devdutt Padikkal',p:'2 Cr'}]},
   {id:'DC',f:'Delhi Capitals',s:'DC',o:'Sujal',pl:[
@@ -326,7 +358,7 @@ const TEAMS=[
     {n:'Shashank Singh',p:'5.5 Cr'},{n:'Heinrich Klaasen',p:'17.5 Cr'},{n:'Matt Henry',p:'3.6 Cr'},
     {n:'Vaibhav Arora',p:'2.4 Cr'}]},
   {id:'LSG',f:'Lucknow Super Giants',s:'LSG',o:'Suyash',pl:[
-    {n:'Rohit Sharma',p:'18.5 Cr'},{n:'Shardul Thakur',p:'6.5 Cr'},{n:'Trent Boult',p:'15 Cr'},
+    {n:'Sanju Samson',p:'25 Cr'},{n:'Shardul Thakur',p:'6.5 Cr'},{n:'Trent Boult',p:'15 Cr'},
     {n:'Pathum Nissanka',p:'4.4 Cr'},{n:'Rahul Tewatia',p:'6.5 Cr'},{n:'Kagiso Rabada',p:'17.5 Cr'},
     {n:'Priyansh Arya',p:'8.5 Cr'},{n:'Ruturaj Gaikwad',p:'15.5 Cr'},{n:'R Jadeja',p:'9.5 Cr'},
     {n:'Hetmyer',p:'5.5 Cr'},{n:'Jacob Bethell',p:'6.5 Cr'},{n:'T Natarajan',p:'6 Cr'}]},
@@ -337,158 +369,142 @@ const TEAMS=[
     {n:'Jacob Duffy',p:'2 Cr'},{n:'Sandeep Sharma',p:'2 Cr'},{n:'Jitesh Sharma',p:'2 Cr'}]},
 ];
 
-/* ── STORAGE KEY ── */
-const STORAGE_KEY = 'ipl26_shared_state';
+const ADMIN_PW='ipl2026admin';
+const LS_CFG='ipl26_fb_cfg';
+const LS_DATA='ipl26_data';
+const FB_COLL='ipl2026';
+const FB_DOC='state';
 
-/* ── DEFAULT STATE BUILDER ── */
+// ── App State ──────────────────────────────────────
+let ST=defaultST();
+let db=null;
+let fbConnected=false;
+let skipNextSnapshot=false;
+
 function defaultST(){
-  const st={pts:{},cap:{},vc:{}};
-  TEAMS.forEach(t=>{st.pts[t.id]={};t.pl.forEach(p=>{st.pts[t.id][p.n]=0;});st.cap[t.id]='';st.vc[t.id]='';});
-  return st;
+  const s={pts:{},cap:{},vc:{}};
+  TEAMS.forEach(t=>{s.pts[t.id]={};t.pl.forEach(p=>{s.pts[t.id][p.n]=0;});s.cap[t.id]='';s.vc[t.id]='';});
+  return s;
+}
+function mergeInto(raw){
+  const f=defaultST();
+  if(raw.pts)Object.keys(raw.pts).forEach(tid=>{if(f.pts[tid])Object.keys(raw.pts[tid]).forEach(pn=>{if(pn in f.pts[tid])f.pts[tid][pn]=Number(raw.pts[tid][pn])||0;});});
+  if(raw.cap)Object.keys(raw.cap).forEach(tid=>{if(tid in f.cap)f.cap[tid]=raw.cap[tid]||'';});
+  if(raw.vc)Object.keys(raw.vc).forEach(tid=>{if(tid in f.vc)f.vc[tid]=raw.vc[tid]||'';});
+  return f;
 }
 
-/* ── IN-MEMORY STATE (always present) ── */
-let ST = defaultST();
-
-/* ── SYNC BAR ── */
-function showSync(msg, isErr=false){
-  const bar=document.getElementById('sync-bar');
-  const dot=document.getElementById('sync-dot');
-  const txt=document.getElementById('sync-msg');
-  txt.textContent=msg;
-  dot.className='sync-dot'+(isErr?' err':'');
-  bar.classList.add('show');
-  clearTimeout(bar._t);
-  bar._t=setTimeout(()=>bar.classList.remove('show'),3000);
+// ── Toast ──────────────────────────────────────────
+function toast(msg,err=false){
+  const bar=document.getElementById('sync-bar'),dot=document.getElementById('sync-dot'),txt=document.getElementById('sync-msg');
+  txt.textContent=msg;dot.className='sync-dot'+(err?' err':'');bar.classList.add('show');
+  clearTimeout(bar._t);bar._t=setTimeout(()=>bar.classList.remove('show'),3500);
 }
 
-/* ── SHARED STORAGE VIA window.storage ── */
-async function loadFromStorage(){
-  try {
-    const result = await window.storage.get(STORAGE_KEY, true); // shared=true
-    if(result && result.value){
-      const parsed = JSON.parse(result.value);
-      // Merge carefully — keep defaults for missing keys
-      const fresh = defaultST();
-      if(parsed.pts) Object.keys(parsed.pts).forEach(tid=>{
-        if(fresh.pts[tid]) Object.keys(parsed.pts[tid]).forEach(pn=>{
-          if(pn in fresh.pts[tid]) fresh.pts[tid][pn]=Number(parsed.pts[tid][pn])||0;
-        });
-      });
-      if(parsed.cap) Object.keys(parsed.cap).forEach(tid=>{ if(tid in fresh.cap) fresh.cap[tid]=parsed.cap[tid]||''; });
-      if(parsed.vc) Object.keys(parsed.vc).forEach(tid=>{ if(tid in fresh.vc) fresh.vc[tid]=parsed.vc[tid]||''; });
-      ST = fresh;
+// ── LocalStorage ───────────────────────────────────
+function saveLocal(){try{localStorage.setItem(LS_DATA,JSON.stringify(ST));}catch(_){}}
+function loadLocal(){try{const s=localStorage.getItem(LS_DATA);if(s)ST=mergeInto(JSON.parse(s));}catch(_){}}
+
+// ── Firebase ───────────────────────────────────────
+async function startFirebase(cfg){
+  const app=getApps().length?getApps()[0]:initializeApp(cfg);
+  db=getFirestore(app);
+  // Load current data
+  try{
+    const snap=await getDoc(doc(db,FB_COLL,FB_DOC));
+    if(snap.exists()) ST=mergeInto(snap.data());
+  }catch(e){console.warn('FB read:',e);}
+  // Live listener
+  onSnapshot(doc(db,FB_COLL,FB_DOC),snap=>{
+    if(!snap.exists()||skipNextSnapshot) return;
+    const incoming=mergeInto(snap.data());
+    if(JSON.stringify(incoming)!==JSON.stringify(ST)){
+      ST=incoming;
+      buildLB();buildTeams();
+      toast('🔄 Points updated live!');
     }
-  } catch(e){
-    // Key doesn't exist yet or error — use defaults, that's fine
+  });
+  fbConnected=true;
+  updateFbBanner();
+  toast('🟢 Firebase connected — live sync on!');
+}
+
+async function fbSave(){
+  if(!db) return false;
+  try{
+    skipNextSnapshot=true;
+    await setDoc(doc(db,FB_COLL,FB_DOC),JSON.parse(JSON.stringify(ST)));
+    setTimeout(()=>skipNextSnapshot=false,2000);
+    return true;
+  }catch(e){
+    skipNextSnapshot=false;
+    console.error('FB save:',e);
+    return false;
   }
 }
 
-async function saveToStorage(){
-  try {
-    await window.storage.set(STORAGE_KEY, JSON.stringify(ST), true); // shared=true
-    showSync('✅ Saved & synced for everyone!');
-  } catch(e){
-    // Fallback to localStorage
-    try { localStorage.setItem('ipl26v3_fallback', JSON.stringify(ST)); } catch(_){}
-    showSync('⚠️ Saved locally only', true);
+function updateFbBanner(){
+  const btn=document.getElementById('fb-connect-btn');
+  const txt=document.getElementById('fb-status-txt');
+  if(fbConnected){
+    btn.outerHTML='<span class="fb-connected-badge" id="fb-connect-btn">🟢 LIVE — all users sync in real-time</span>';
+    txt.textContent='Firebase is connected. Every save is global and instant.';
   }
 }
 
-/* ── POLL FOR UPDATES every 15s (so viewers see changes without refresh) ── */
-async function pollUpdates(){
-  try {
-    const result = await window.storage.get(STORAGE_KEY, true);
-    if(result && result.value){
-      const parsed = JSON.parse(result.value);
-      const fresh = defaultST();
-      if(parsed.pts) Object.keys(parsed.pts).forEach(tid=>{
-        if(fresh.pts[tid]) Object.keys(parsed.pts[tid]).forEach(pn=>{
-          if(pn in fresh.pts[tid]) fresh.pts[tid][pn]=Number(parsed.pts[tid][pn])||0;
-        });
-      });
-      if(parsed.cap) Object.keys(parsed.cap).forEach(tid=>{ if(tid in fresh.cap) fresh.cap[tid]=parsed.cap[tid]||''; });
-      if(parsed.vc) Object.keys(parsed.vc).forEach(tid=>{ if(tid in fresh.vc) fresh.vc[tid]=parsed.vc[tid]||''; });
-      // Only re-render if data actually changed
-      if(JSON.stringify(fresh)!==JSON.stringify(ST)){
-        ST=fresh;
-        buildLB();buildTeams();
-        showSync('🔄 Points updated!');
-      }
-    }
-  } catch(e){ /* silently ignore poll errors */ }
-}
-setInterval(pollUpdates, 15000);
+// ── Modal ──────────────────────────────────────────
+window.openFbModal=function(){document.getElementById('fb-modal').style.display='flex';};
+window.closeFbModal=function(){document.getElementById('fb-modal').style.display='none';};
+window.connectFirebase=async function(){
+  const raw=document.getElementById('fb-cfg-ta').value.trim();
+  const errEl=document.getElementById('fb-modal-err');
+  errEl.style.display='none';
+  let cfg;
+  try{cfg=JSON.parse(raw);}catch(e){errEl.textContent='❌ Invalid JSON.';errEl.style.display='block';return;}
+  if(!cfg.apiKey||!cfg.projectId){errEl.textContent='❌ Missing apiKey or projectId.';errEl.style.display='block';return;}
+  try{
+    await startFirebase(cfg);
+    localStorage.setItem(LS_CFG,JSON.stringify(cfg));
+    buildLB();buildTeams();
+    window.closeFbModal();
+  }catch(e){errEl.textContent='❌ '+e.message;errEl.style.display='block';}
+};
 
-/* ── HELPERS ── */
+// ── Helpers ────────────────────────────────────────
 function bud(t){return t.pl.reduce((s,p)=>s+(parseFloat(p.p)||0),0).toFixed(1);}
 function rawPts(tid,pn){return Number(ST.pts[tid]?.[pn])||0;}
-function effPts(tid,pn){
-  let v=rawPts(tid,pn);
-  if(ST.cap[tid]===pn)return v*2;
-  if(ST.vc[tid]===pn)return v*1.5;
-  return v;
-}
+function effPts(tid,pn){const v=rawPts(tid,pn);if(ST.cap[tid]===pn)return v*2;if(ST.vc[tid]===pn)return v*1.5;return v;}
 function teamTotal(tid){return TEAMS.find(t=>t.id===tid).pl.reduce((s,p)=>s+effPts(tid,p.n),0);}
 
-/* ── LEADERBOARD ── */
+// ── Leaderboard ────────────────────────────────────
 function buildLB(){
   const medals=['🥇','🥈','🥉'];
   const sorted=[...TEAMS].map(t=>({...t,tot:teamTotal(t.id),b:bud(t)})).sort((a,b)=>b.tot-a.tot);
-
   const pod=document.getElementById('podium');pod.innerHTML='';
   sorted.slice(0,3).forEach((t,i)=>{
-    const cn=ST.cap[t.id],vn=ST.vc[t.id];
-    const cs=cn?cn.split(' ')[0]:'None',vs=vn?vn.split(' ')[0]:'None';
-    pod.innerHTML+=`<div class="pod p${i+1}" onclick="goTeam('${t.id}')">
-      <div class="pod-card">
-        <div class="pod-medal">${medals[i]}</div>
-        <img class="pod-logo" src="${LOGOS[t.id]}" alt="${t.s}" onerror="this.style.display='none'">
-        <div class="pod-name">${t.s}</div>
-        <div class="pod-owner">👤 ${t.o}</div>
-        <div class="pod-pts">${t.tot>0?t.tot.toFixed(1):'—'}</div>
-        <div class="pod-cv">C: ${cs} · VC: ${vs}</div>
-      </div>
-      <div class="pod-base"></div>
-    </div>`;
+    const cs=ST.cap[t.id]?ST.cap[t.id].split(' ')[0]:'None';
+    const vs=ST.vc[t.id]?ST.vc[t.id].split(' ')[0]:'None';
+    pod.innerHTML+=`<div class="pod p${i+1}" onclick="goTeam('${t.id}')"><div class="pod-card"><div class="pod-medal">${medals[i]}</div><img class="pod-logo" src="${LOGOS[t.id]}" alt="" onerror="this.style.display='none'"><div class="pod-name">${t.s}</div><div class="pod-owner">👤 ${t.o}</div><div class="pod-pts">${t.tot>0?t.tot.toFixed(1):'—'}</div><div class="pod-cv">C: ${cs} · VC: ${vs}</div></div><div class="pod-base"></div></div>`;
   });
-
   const body=document.getElementById('lb-body');body.innerHTML='';
   sorted.forEach((t,i)=>{
     const r=i+1,col=TC[t.id];
-    const cn=ST.cap[t.id],vn=ST.vc[t.id];
-    const cs=cn?cn.split(' ').slice(0,2).join(' '):'None';
-    const vs=vn?vn.split(' ').slice(0,2).join(' '):'None';
-    body.innerHTML+=`<div class="lb-row" data-r="${r}" onclick="goTeam('${t.id}')">
-      <div class="lb-rank ${r<=3?'r'+r:''}">${r<=3?medals[r-1]:r}</div>
-      <div class="lb-tcell">
-        <img class="lb-logo" src="${LOGOS[t.id]}" alt="${t.s}" onerror="this.style.display='none'">
-        <div>
-          <div class="lb-tname">${t.s} <span style="font-size:12px;color:var(--muted);font-weight:400">— ${t.o}</span></div>
-          <span class="lb-fbadge" style="color:${col.c};border-color:${col.c}40">${t.f}</span>
-        </div>
-      </div>
-      <div class="cv-cell">
-        <div class="cv-line">👑 <b>${cs}</b></div>
-        <div class="cv-line vc-l">⭐ <b>${vs}</b></div>
-      </div>
-      <div class="${t.tot>0?'lb-pts':'lb-pts zero'}">${t.tot>0?t.tot.toFixed(1):'—'}</div>
-      <div class="lb-bud">${t.b} Cr</div>
-    </div>`;
+    const cs=ST.cap[t.id]?ST.cap[t.id].split(' ').slice(0,2).join(' '):'None';
+    const vs=ST.vc[t.id]?ST.vc[t.id].split(' ').slice(0,2).join(' '):'None';
+    body.innerHTML+=`<div class="lb-row" data-r="${r}" onclick="goTeam('${t.id}')"><div class="lb-rank ${r<=3?'r'+r:''}">${r<=3?medals[r-1]:r}</div><div class="lb-tcell"><img class="lb-logo" src="${LOGOS[t.id]}" alt="" onerror="this.style.display='none'"><div><div class="lb-tname">${t.s} <span style="font-size:12px;color:var(--muted);font-weight:400">— ${t.o}</span></div><span class="lb-fbadge" style="color:${col.c};border-color:${col.c}40">${t.f}</span></div></div><div class="cv-cell"><div class="cv-line">👑 <b>${cs}</b></div><div class="cv-line vc-l">⭐ <b>${vs}</b></div></div><div class="${t.tot>0?'lb-pts':'lb-pts zero'}">${t.tot>0?t.tot.toFixed(1):'—'}</div><div class="lb-bud">${t.b} Cr</div></div>`;
   });
-
   document.getElementById('hs-p').textContent=TEAMS.reduce((s,t)=>s+t.pl.length,0);
   const top=Math.max(0,...sorted.map(x=>x.tot));
   document.getElementById('hs-top').textContent=top>0?top.toFixed(0):'—';
 }
 
-/* ── TEAMS ── */
+// ── Teams ──────────────────────────────────────────
 function buildTeams(){
   const g=document.getElementById('tgrid');g.innerHTML='';
   TEAMS.forEach(t=>{
     const col=TC[t.id],cn=ST.cap[t.id],vn=ST.vc[t.id],tot=teamTotal(t.id);
     const sortedPl=[...t.pl].sort((a,b)=>effPts(t.id,b.n)-effPts(t.id,a.n));
-    let rows=sortedPl.map(p=>{
+    const rows=sortedPl.map(p=>{
       const ef=effPts(t.id,p.n),raw=rawPts(t.id,p.n);
       const isC=p.n===cn,isV=p.n===vn;
       const mk=isC?'<span class="cmark C">C</span>':isV?'<span class="cmark VC">VC</span>':'';
@@ -497,149 +513,133 @@ function buildTeams(){
     }).join('');
     const capC=cn?`<div class="cc cap"><span>👑</span>${cn.split(' ')[0]}<span class="badge">2×</span></div>`:`<div class="cc cap" style="opacity:.35">👑 Not set</div>`;
     const vcC=vn?`<div class="cc vc"><span>⭐</span>${vn.split(' ')[0]}<span class="badge">1.5×</span></div>`:`<div class="cc vc" style="opacity:.35">⭐ Not set</div>`;
-    g.innerHTML+=`<div class="tc" style="--tc:${col.c};--tg:${col.g}">
-      <div class="tc-head">
-        <div class="tc-head-bg"></div>
-        <div class="tc-inner">
-          <div class="tc-logo-wrap"><img src="${LOGOS[t.id]}" alt="${t.s}" onerror="this.parentNode.innerHTML='🏏'"></div>
-          <div style="flex:1;min-width:0"><div class="tc-fname">${t.f}</div><div class="tc-owner">👤 ${t.o}</div></div>
-          <div style="text-align:right"><div class="tc-pts-big">${tot>0?tot.toFixed(1):'—'}</div><div class="tc-pts-lbl">Points</div></div>
-        </div>
-      </div>
-      <div class="tc-caprow">${capC}${vcC}</div>
-      <div class="tc-budrow"><span>Squad Budget</span><span>${bud(t)} Cr</span></div>
-      <table class="ptable">
-        <thead><tr><th>Player · Price</th><th>Pts</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
+    g.innerHTML+=`<div class="tc" style="--tc:${col.c};--tg:${col.g}"><div class="tc-head"><div class="tc-head-bg"></div><div class="tc-inner"><div class="tc-logo-wrap"><img src="${LOGOS[t.id]}" alt="" onerror="this.parentNode.innerHTML='🏏'"></div><div style="flex:1;min-width:0"><div class="tc-fname">${t.f}</div><div class="tc-owner">👤 ${t.o}</div></div><div style="text-align:right"><div class="tc-pts-big">${tot>0?tot.toFixed(1):'—'}</div><div class="tc-pts-lbl">Points</div></div></div></div><div class="tc-caprow">${capC}${vcC}</div><div class="tc-budrow"><span>Squad Budget</span><span>${bud(t)} Cr</span></div><table class="ptable"><thead><tr><th>Player · Price</th><th>Pts</th></tr></thead><tbody>${rows}</tbody></table></div>`;
   });
 }
 
-/* ── ADMIN ── */
-const ADMIN_PASSWORD = 'ipl2026admin';
-
+// ── Admin ──────────────────────────────────────────
 function doLogin(){
-  const pwEl = document.getElementById('adm-pw');
-  const errEl = document.getElementById('login-err');
-  const pw = pwEl.value.trim();
-  if(pw === ADMIN_PASSWORD){
+  const pw=document.getElementById('adm-pw').value.trim();
+  const err=document.getElementById('login-err');
+  if(pw===ADMIN_PW){
     document.getElementById('adm-login-card').style.display='none';
     document.getElementById('adm-panel').classList.add('open');
-    errEl.style.display='none';
+    err.style.display='none';
     buildAdmin();
-  } else {
-    errEl.style.display='block';
-    pwEl.focus();
-    pwEl.select();
-  }
+  }else{err.style.display='block';document.getElementById('adm-pw').focus();}
 }
-
 function doLogout(){
   document.getElementById('adm-login-card').style.display='';
   document.getElementById('adm-panel').classList.remove('open');
   document.getElementById('adm-pw').value='';
 }
-
 function buildAdmin(){
   const c=document.getElementById('adm-teams');c.innerHTML='';
   TEAMS.forEach(t=>{
     const col=TC[t.id];
-    const mkOpts=(sel)=>['<option value="">— None —</option>',...t.pl.map(p=>`<option value="${p.n}"${ST[sel][t.id]===p.n?' selected':''}>${p.n} (${p.p})</option>`)].join('');
+    const mkOpts=sel=>['<option value="">— None —</option>',...t.pl.map(p=>`<option value="${p.n}"${ST[sel][t.id]===p.n?' selected':''}>${p.n} (${p.p})</option>`)].join('');
     const prows=t.pl.map(p=>{
       const key=`pts_${t.id}_${p.n.replace(/\W+/g,'_')}`;
-      return `<div class="adm-pr">
-        <div><div class="adm-pn">${p.n}</div><div class="adm-pp">${p.p}</div></div>
-        <input class="pts-inp" type="number" id="${key}" value="${rawPts(t.id,p.n)}" min="0" placeholder="0">
-      </div>`;
+      return `<div class="adm-pr"><div><div class="adm-pn">${p.n}</div><div class="adm-pp">${p.p}</div></div><input class="pts-inp" type="number" id="${key}" value="${rawPts(t.id,p.n)}" min="0" placeholder="0"></div>`;
     }).join('');
-    c.innerHTML+=`<div class="adm-team">
-      <div class="adm-team-hdr" onclick="toggleAt('ab_${t.id}','aa_${t.id}')">
-        <img class="adm-logo" src="${LOGOS[t.id]}" alt="${t.s}" onerror="this.style.display='none'">
-        <h4 style="color:${col.c}">${t.f} <span style="font-weight:400;font-size:15px;color:var(--muted)">— ${t.o}</span></h4>
-        <span id="aa_${t.id}" style="color:var(--muted)">▼</span>
-      </div>
-      <div class="adm-body" id="ab_${t.id}">
-        <div class="capvc-sec">
-          <h5>👑 Assign Captain &amp; Vice Captain</h5>
-          <div class="capvc-grid">
-            <div class="sel-wrap">
-              <label class="cap-lbl">👑 Captain — 2× points</label>
-              <select class="cap-sel" id="cap_${t.id}" onchange="onCapChange('${t.id}')">${mkOpts('cap')}</select>
-            </div>
-            <div class="sel-wrap">
-              <label class="vc-lbl">⭐ Vice Captain — 1.5× points</label>
-              <select class="vc-sel" id="vc_${t.id}" onchange="onVCChange('${t.id}')">${mkOpts('vc')}</select>
-            </div>
-          </div>
-        </div>
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">🏏 Player Points</div>
-        ${prows}
-      </div>
-    </div>`;
+    c.innerHTML+=`<div class="adm-team"><div class="adm-team-hdr" onclick="toggleAt('ab_${t.id}','aa_${t.id}')"><img class="adm-logo" src="${LOGOS[t.id]}" alt="" onerror="this.style.display='none'"><h4 style="color:${col.c}">${t.f} <span style="font-weight:400;font-size:15px;color:var(--muted)">— ${t.o}</span></h4><span id="aa_${t.id}" style="color:var(--muted)">▼</span></div><div class="adm-body" id="ab_${t.id}"><div class="capvc-sec"><h5>👑 Captain &amp; Vice Captain</h5><div class="capvc-grid"><div class="sel-wrap"><label class="cap-lbl">👑 Captain — 2× points</label><select class="cap-sel" id="cap_${t.id}" onchange="onCapChange('${t.id}')">${mkOpts('cap')}</select></div><div class="sel-wrap"><label class="vc-lbl">⭐ Vice Captain — 1.5× points</label><select class="vc-sel" id="vc_${t.id}" onchange="onVCChange('${t.id}')">${mkOpts('vc')}</select></div></div></div><div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">🏏 Player Points</div>${prows}</div></div>`;
   });
+  if(fbConnected) updateFbBanner();
 }
-
-function toggleAt(bid,aid){
-  const b=document.getElementById(bid),a=document.getElementById(aid);
-  b.classList.toggle('open');a.textContent=b.classList.contains('open')?'▲':'▼';
-}
-function onCapChange(tid){
+window.toggleAt=function(bid,aid){const b=document.getElementById(bid),a=document.getElementById(aid);b.classList.toggle('open');a.textContent=b.classList.contains('open')?'▲':'▼';};
+window.onCapChange=function(tid){
   const val=document.getElementById('cap_'+tid).value;
   if(val&&val===ST.vc[tid]){ST.vc[tid]='';const v=document.getElementById('vc_'+tid);if(v)v.value='';}
   ST.cap[tid]=val;buildLB();buildTeams();
-}
-function onVCChange(tid){
+};
+window.onVCChange=function(tid){
   const val=document.getElementById('vc_'+tid).value;
   if(val&&val===ST.cap[tid]){ST.cap[tid]='';const v=document.getElementById('cap_'+tid);if(v)v.value='';}
   ST.vc[tid]=val;buildLB();buildTeams();
-}
+};
 
+// ── Save All ───────────────────────────────────────
 async function saveAll(){
+  const btn=document.getElementById('save-all-btn');
+  const notice=document.getElementById('save-notice');
+  btn.disabled=true;
+  btn.textContent='⏳ SAVING…';
+  notice.className='save-notice';
+  notice.textContent='';
+
+  // Collect from inputs
   TEAMS.forEach(t=>{
+    if(!ST.pts[t.id]) ST.pts[t.id]={};
     t.pl.forEach(p=>{
-      const key=`pts_${t.id}_${p.n.replace(/\W+/g,'_')}`;
-      const el=document.getElementById(key);
-      if(el){if(!ST.pts[t.id])ST.pts[t.id]={};ST.pts[t.id][p.n]=parseInt(el.value)||0;}
+      const el=document.getElementById(`pts_${t.id}_${p.n.replace(/\W+/g,'_')}`);
+      if(el) ST.pts[t.id][p.n]=parseInt(el.value)||0;
     });
-    const ce=document.getElementById('cap_'+t.id),ve=document.getElementById('vc_'+t.id);
-    if(ce)ST.cap[t.id]=ce.value;
-    if(ve)ST.vc[t.id]=ve.value;
+    const ce=document.getElementById('cap_'+t.id);
+    const ve=document.getElementById('vc_'+t.id);
+    if(ce) ST.cap[t.id]=ce.value;
+    if(ve) ST.vc[t.id]=ve.value;
   });
-  buildLB();buildTeams();
-  // Save to shared storage
-  await saveToStorage();
-  // Visual notice
-  const n=document.getElementById('save-notice');n.classList.add('show');
-  setTimeout(()=>n.classList.remove('show'),3500);
-}
 
-/* ── NAV ── */
-function showSec(id,btn){
-  ['lb','teams','admin'].forEach(s=>document.getElementById(s).style.display=s===id?'block':'none');
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-  if(btn)btn.classList.add('active');
-}
-function goTeam(id){
-  showSec('teams',document.querySelectorAll('.nav-btn')[1]);
-  setTimeout(()=>{
-    const all=document.querySelectorAll('.tc');
-    const idx=TEAMS.findIndex(t=>t.id===id);
-    if(all[idx])all[idx].scrollIntoView({behavior:'smooth',block:'center'});
-  },120);
-}
-
-/* ── WIRE UP BUTTONS (no inline handlers for login/logout) ── */
-document.getElementById('adm-login-btn').addEventListener('click', doLogin);
-document.getElementById('adm-pw').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
-document.getElementById('logout-btn').addEventListener('click', doLogout);
-document.getElementById('save-all-btn').addEventListener('click', saveAll);
-
-/* ── INIT ── */
-(async function init(){
-  await loadFromStorage();
   buildLB();
   buildTeams();
+  saveLocal();
+
+  let globalOk=false;
+  if(fbConnected) globalOk=await fbSave();
+
+  btn.disabled=false;
+  btn.textContent='💾 SAVE ALL CHANGES';
+  notice.classList.add('show');
+
+  if(globalOk){
+    notice.textContent='✅ Saved globally! All users see this now.';
+    notice.className='save-notice show ok';
+    toast('✅ Global save done — everyone updated!');
+  }else if(fbConnected){
+    notice.textContent='⚠️ Firebase error. Saved locally.';
+    notice.className='save-notice show err';
+    toast('⚠️ Firebase error — saved locally only',true);
+  }else{
+    notice.textContent='💾 Saved locally. Connect Firebase to sync globally.';
+    notice.className='save-notice show err';
+    toast('💾 Local save done. Connect Firebase for global sync.');
+  }
+  setTimeout(()=>notice.classList.remove('show'),5000);
+}
+
+// ── Nav ────────────────────────────────────────────
+window.showSec=function(id,btn){
+  ['lb','teams','admin'].forEach(s=>document.getElementById(s).style.display=s===id?'block':'none');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+};
+window.goTeam=function(id){
+  window.showSec('teams',document.querySelectorAll('.nav-btn')[1]);
+  setTimeout(()=>{const all=document.querySelectorAll('.tc');const idx=TEAMS.findIndex(t=>t.id===id);if(all[idx])all[idx].scrollIntoView({behavior:'smooth',block:'center'});},120);
+};
+
+// ── Wire buttons ───────────────────────────────────
+document.getElementById('adm-login-btn').addEventListener('click',doLogin);
+document.getElementById('adm-pw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('logout-btn').addEventListener('click',doLogout);
+document.getElementById('save-all-btn').addEventListener('click',saveAll);
+
+// ── Boot ───────────────────────────────────────────
+(async function init(){
+  loadLocal();
+  buildLB();
+  buildTeams();
+  // Try auto-connecting saved Firebase config
+  const saved=localStorage.getItem(LS_CFG);
+  if(saved){
+    try{
+      await startFirebase(JSON.parse(saved));
+      buildLB();buildTeams();
+    }catch(e){
+      console.warn('Auto Firebase connect failed:',e);
+      localStorage.removeItem(LS_CFG);
+    }
+  }
 })();
 </script>
 </body>
